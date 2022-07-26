@@ -25,7 +25,7 @@ void main() {
     when(() => mockRepository.userSingUp(userInfo))
         .thenAnswer((invocation) async => Right(succesUser));
     final result = await usercase(userInfo);
-    expect(result.fold(id, id), isA<SingUpParams>());
+    expect(result.fold(id, id), isA<SingedUser>());
   });
   group("Fail to sing up -", (){
     test('Empty email', () async {
