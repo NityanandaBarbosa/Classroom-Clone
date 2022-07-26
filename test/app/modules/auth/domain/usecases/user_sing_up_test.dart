@@ -18,47 +18,47 @@ void main() {
       userFullName: "Testador Pereira");
 
   test('Success singup', () async {
-    final userInfo = SingUpUser(
+    final userInfo = SingUpParams(
         email: "teste@teste.com",
         password: "Teste123",
         userFullName: "Testador Pereira");
     when(() => mockRepository.userSingUp(userInfo))
         .thenAnswer((invocation) async => Right(succesUser));
     final result = await usercase(userInfo);
-    expect(result.fold(id, id), isA<SingUpUser>());
+    expect(result.fold(id, id), isA<SingUpParams>());
   });
   group("Fail to sing up -", (){
     test('Empty email', () async {
-    final userInfo = SingUpUser(email: "", password: "Teste123", userFullName: "Testador Pereira");
+    final userInfo = SingUpParams(email: "", password: "Teste123", userFullName: "Testador Pereira");
     final result = await usercase(userInfo);
     expect(result.fold(id, id), isA<MissingRequiredValue>());
   });
   test('Empty password', () async {
-    final userInfo = SingUpUser(email: "teste@teste.com", password: "", userFullName: "Testador Pereira");
+    final userInfo = SingUpParams(email: "teste@teste.com", password: "", userFullName: "Testador Pereira");
     final result = await usercase(userInfo);
     expect(result.fold(id, id), isA<MissingRequiredValue>());
   });
 
   test('Empty userFullName', () async {
-    final userInfo = SingUpUser(email: "teste@teste.com", password: "Teste123", userFullName: "");
+    final userInfo = SingUpParams(email: "teste@teste.com", password: "Teste123", userFullName: "");
     final result = await usercase(userInfo);
     expect(result.fold(id, id), isA<MissingRequiredValue>());
   });
 
   test('Email out of patterns', () async {
-    final userInfo = SingUpUser(email: "teste.com", password: "Teste123", userFullName: "Testador Pereira");
+    final userInfo = SingUpParams(email: "teste.com", password: "Teste123", userFullName: "Testador Pereira");
     final result = await usercase(userInfo);
     expect(result.fold(id, id), isA<EmailOutOfPattern>());
   });
 
   test('Password out of patterns', () async {
-    final userInfo = SingUpUser(email: "teste@gmail.com", password: "teste", userFullName: "Testador Pereira");
+    final userInfo = SingUpParams(email: "teste@gmail.com", password: "teste", userFullName: "Testador Pereira");
     final result = await usercase(userInfo);
     expect(result.fold(id, id), isA<PasswordOutOfPattern>());
   });
 
   test('Email already in use', () async {
-    final userInfo = SingUpUser(
+    final userInfo = SingUpParams(
         email: "teste@teste.com",
         password: "Teste123",
         userFullName: "Testador Pereira");

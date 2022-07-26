@@ -2,7 +2,7 @@
 
 import 'package:ifroom/app/core/errors/failure.dart';
 
-abstract class SingUpException implements Failure {
+class SingUpException implements Failure {
   final String message;
   final StackTrace? stackTrace;
 

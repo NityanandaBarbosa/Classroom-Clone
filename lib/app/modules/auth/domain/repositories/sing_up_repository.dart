@@ -4,5 +4,5 @@ import '../entities/sing_up_user.dart';
 import '../errors/sing_up_errors.dart';
 
 abstract class SingUpRepository {
-  Future<Either<SingUpException, SingedUser>> userSingUp(SingUpUser user);
+  Future<Either<SingUpException, SingedUser>> userSingUp(SingUpParams parms);
 }

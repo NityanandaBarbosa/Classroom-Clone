@@ -5,7 +5,7 @@ import 'package:ifroom/app/modules/auth/domain/errors/sing_up_errors.dart';
 import 'package:ifroom/app/modules/auth/domain/repositories/sing_up_repository.dart';
 
 abstract class UserSingUp {
-  Future<Either<SingUpException, SingUpUser>> call(SingedUser singedUser);
+  Future<Either<SingUpException, SingUpParams>> call(SingedUser singedUser);
 }
 
 class UserSingUpImpl implements UserSingUp {
@@ -14,18 +14,18 @@ class UserSingUpImpl implements UserSingUp {
   UserSingUpImpl(this.repository);
 
   @override
-  Future<Either<SingUpException, SingedUser>> call(SingUpUser userInfo) async {
-    if (userInfo.email.isEmpty ||
-        userInfo.password.isEmpty ||
-        userInfo.userFullName.isEmpty) {
+  Future<Either<SingUpException, SingedUser>> call(SingUpParams params) async {
+    if (params.email.isEmpty ||
+        params.password.isEmpty ||
+        params.userFullName.isEmpty) {
       return left(const MissingRequiredValue("Some field is empty"));
     }
-    if (!Validator.isValidEmail(userInfo.email)) {
+    if (!Validator.isValidEmail(params.email)) {
       return left(const EmailOutOfPattern("Your email is out of pattern"));
     }
-    if (!Validator.isValidPassword(userInfo.password)) {
+    if (!Validator.isValidPassword(params.password)) {
       return left(const PasswordOutOfPattern("Your password is out of pattern"));
     }
-    return await repository.userSingUp(userInfo);
+    return await repository.userSingUp(params);
   }
 }
