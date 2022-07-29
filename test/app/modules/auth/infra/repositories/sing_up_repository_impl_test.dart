@@ -16,13 +16,13 @@ void main() {
   final params = SingUpParams(
       email: "teste@teste.com",
       password: "Teste123",
-      userFullName: "Testador Pereira");
+      name: "Testador Pereira");
 
   final signedUserInfo = SingedUser(
       id: 1,
       email: "teste@teste.com",
       password: "Teste123",
-      userFullName: "Testador Pereira");
+      name: "Testador Pereira");
 
   test('Should return a SingedUser', () async {
     when(() => datasourceMock.userSingUp(params))

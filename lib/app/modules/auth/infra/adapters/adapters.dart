@@ -6,7 +6,7 @@ class SingedUserAdapter {
       id: map['id']?.toInt(),
       email: map['email'] ?? '',
       password: map['password'] ?? '',
-      userFullName: map['userFullName'] ?? '',
+      name: map['name'] ?? '',
     );
   }
 }
@@ -16,12 +16,12 @@ class SingUpParamsAdpter {
     return SingUpParams(
         email: map["email"],
         password: map["password"],
-        userFullName: map["userFullName"]);
+        name: map["name"]);
   }
 
   static Map<String, dynamic> toMap(SingUpParams params)=> <String, dynamic>{
     "email": params.email,
     "password": params.password,
-    "userFullName": params.userFullName
+    "name": params.name
   };
 }

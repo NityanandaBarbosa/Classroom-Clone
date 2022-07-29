@@ -17,7 +17,7 @@ class UserSingUpImpl implements UserSingUp {
   Future<Either<SingUpException, SingedUser>> call(SingUpParams params) async {
     if (params.email.isEmpty ||
         params.password.isEmpty ||
-        params.userFullName.isEmpty) {
+        params.name.isEmpty) {
       return left(const MissingRequiredValue("Some field is empty"));
     }
     if (!Validator.isValidEmail(params.email)) {
