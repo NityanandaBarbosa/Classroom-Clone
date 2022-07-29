@@ -1,3 +1,3 @@
 class AppConsts {
-  static String apiUrl = "http://0.0.0.0:8080";
+  static String apiUrl = "http://localhost:8080";
 }
