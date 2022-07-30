@@ -8,7 +8,7 @@ class HomePage extends StatefulWidget {
   final HomeStore store;
   const HomePage({
     Key? key,
-    this.title = "Teste",
+    this.title = "Home",
     required this.store,
   }) : super(key: key);
 
@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           widget.store.increment();
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

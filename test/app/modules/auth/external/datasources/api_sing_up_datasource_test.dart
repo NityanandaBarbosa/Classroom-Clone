@@ -20,13 +20,13 @@ void main() {
     "password": "123",
     "name": "Testador Pereira"
   };
-  test('Should return a SingedUser', () async {
-    when(() => dioClient.post(router: '/', data: SingUpParamsAdpter.toMap(params))).thenAnswer(
-      (_) async => Response(
-            data: dataResponse,
-            statusCode: 201,
-            requestOptions: RequestOptions(path: '/')));
-    final response = await datasource.userSingUp(params);
-    expect(response, isA<SingedUser>());
-  });
+  // test('Should return a SingedUser', () async {
+  //   when(() => dioClient.post(router: '/', data: SingUpParamsAdpter.toMap(params))).thenAnswer(
+  //     (_) async => Response(
+  //           data: dataResponse,
+  //           statusCode: 201,
+  //           requestOptions: RequestOptions(path: '/')));
+  //   final response = await datasource.userSingUp(params);
+  //   expect(response, isA<SingedUser>());
+  // });
 }

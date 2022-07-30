@@ -5,7 +5,7 @@ import 'package:ifroom/app/modules/auth/domain/errors/sing_up_errors.dart';
 import 'package:ifroom/app/modules/auth/domain/repositories/sing_up_repository.dart';
 
 abstract class UserSingUp {
-  Future<Either<SingUpException, SingUpParams>> call(SingedUser singedUser);
+  Future<Either<SingUpException, SingedUser>> call(SingUpParams singedUser);
 }
 
 class UserSingUpImpl implements UserSingUp {
