@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:ifroom/app/modules/auth/domain/errors/sing_up_errors.dart';
 import 'package:ifroom/app/modules/auth/domain/entities/sing_up_user.dart';
 import 'package:dartz/dartz.dart';
@@ -16,11 +17,17 @@ class SingUpRepositoryImpl implements SingUpRepository {
     try {
       final result = await dataSource.userSingUp(params);
       return Right(result);
-    } on EmailAlreadyUsed catch (e) {
-      return Left(e);
+    } on DioError catch (e) {
+      if(e.response?.statusCode == 406){
+        return const Left(EmailAlreadyUsed());
+      }
+      if(e.response?.statusCode == 500){
+        return Left(DataSourceError());
+      }
+      return Left(DataSourceError());
     } on DataSourceError catch (e) {
       return Left(e);
-    }on Exception {
+    } on Exception {
       return Left(DataSourceError("Unknow exception"));
     }
   }

@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ifroom/app/modules/auth/domain/entities/sing_up_user.dart';
@@ -35,7 +36,7 @@ void main() {
 
     test('Should throw a EmailAlreadyUsed', () async {
       when(() => datasourceMock.userSingUp(params))
-          .thenThrow(const EmailAlreadyUsed());
+          .thenThrow(DioError(requestOptions: RequestOptions(path: '/',), response: Response(statusCode: 406, requestOptions: RequestOptions(path: '/',))));
       final result = await repository.userSingUp(params);
       expect(result.fold(id, id), isA<EmailAlreadyUsed>());
     });

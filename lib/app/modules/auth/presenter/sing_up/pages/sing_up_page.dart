@@ -17,13 +17,17 @@ class _SingUpPageState extends State<SingUpPage> {
   @override
   void initState() {
     super.initState();
-    widget.store.observer(onError: ((error) {
+    widget.store.observer(
+      onError: ((error) {
       final snackBar = SnackBar(
         content: Text(error.message),
         backgroundColor: Colors.red,
       );
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }));
+      if(error is !DoNothing){
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+    }),
+    );
   }
 
   @override

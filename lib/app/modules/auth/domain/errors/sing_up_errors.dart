@@ -1,5 +1,4 @@
 // ignore_for_file: overridden_fields
-
 import 'package:ifroom/app/core/errors/failure.dart';
 
 class SingUpException implements Failure {
@@ -7,6 +6,10 @@ class SingUpException implements Failure {
   final StackTrace? stackTrace;
 
   const SingUpException(this.message, [this.stackTrace]);
+}
+
+class DoNothing extends SingUpException{
+  DoNothing(super.message);
 }
 
 class MissingRequiredValue extends SingUpException {

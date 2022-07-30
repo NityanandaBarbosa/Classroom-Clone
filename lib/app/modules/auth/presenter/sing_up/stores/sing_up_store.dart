@@ -5,11 +5,11 @@ import 'package:ifroom/app/modules/auth/domain/entities/sing_up_user.dart';
 import 'package:ifroom/app/modules/auth/domain/errors/sing_up_errors.dart';
 import 'package:ifroom/app/modules/auth/domain/usecases/user_sing_up.dart.dart';
 
-class SingUpStore extends NotifierStore<SingUpException, SingedUser> {
+class SingUpStore extends NotifierStore<SingUpException, SingUpParams> {
   final UserSingUp usecase;
   SingUpStore(this.usecase)
       : super(SingedUser(
-            id: 1, email: "teste", password: "teste", name: "teste"));
+            id: 1, email: "", password: "", name: ""));
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -22,14 +22,13 @@ class SingUpStore extends NotifierStore<SingUpException, SingedUser> {
         name: nameController.text);
     setLoading(true);
     final result = await usecase.call(params);
-    setLoading(false);
     result.fold((l) {
       setError(l);
+      setError(DoNothing("Nothing"));
     }, (r) {
       update(r);
-      Modular.to.pushNamed("/home");
-      
+      Modular.to.pushNamed("/home/");
     });
-    
+    setLoading(false);
   }
 }
