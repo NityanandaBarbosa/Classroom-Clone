@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:ifroom/app/core/utils/dio_client.dart';
 import 'package:ifroom/app/modules/auth/domain/entities/sing_up_user.dart';
 import 'package:ifroom/app/modules/auth/domain/errors/sing_up_errors.dart';
@@ -11,13 +12,17 @@ class ApiSingUpDatasource implements SingUpDataSource {
 
   @override
   Future<SingedUser> userSingUp(SingUpParams params) async {
-    final data = SingUpParamsAdpter.toMap(params);
-    final response = await dio.post(router: "/auth/sing-up", data: data);
-    if (response.statusCode == 201) {
-      return SingedUserAdapter.fromMap(response.data);
-    } else if (response.statusCode == 406) {
-      throw const EmailAlreadyUsed();
-    } else {
+    try {
+      final data = SingUpParamsAdpter.toMap(params);
+      final response = await dio.post(router: "/auth/sing-up", data: data);
+      if (response.statusCode == 201) {
+        return SingedUserAdapter.fromMap(response.data);
+      }
+      throw Exception();
+    } on DioError catch (e) {
+      if (e.response?.statusCode == 406) {
+        throw const EmailAlreadyUsed();
+      }
       throw DataSourceError();
     }
   }

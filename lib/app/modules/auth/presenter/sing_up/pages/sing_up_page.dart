@@ -15,6 +15,18 @@ class SingUpPage extends StatefulWidget {
 
 class _SingUpPageState extends State<SingUpPage> {
   @override
+  void initState() {
+    super.initState();
+    widget.store.observer(onError: ((error) {
+      final snackBar = SnackBar(
+        content: Text(error.message),
+        backgroundColor: Colors.red,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -22,10 +34,11 @@ class _SingUpPageState extends State<SingUpPage> {
       ),
       body: ScopedBuilder(
         store: widget.store,
-        onError:((context, SingUpException? e) =>  Container()),
-        onLoading: (_) => const Center(child: CircularProgressIndicator(),),
+        onLoading: (_) => const Center(
+          child: CircularProgressIndicator(),
+        ),
         onState: ((context, state) => SingUpForm(store: widget.store)),
-          
+        onError: ((context, state) => SingUpForm(store: widget.store)),
       ),
     );
   }

@@ -22,12 +22,14 @@ class SingUpStore extends NotifierStore<SingUpException, SingedUser> {
         name: nameController.text);
     setLoading(true);
     final result = await usecase.call(params);
+    setLoading(false);
     result.fold((l) {
       setError(l);
     }, (r) {
       update(r);
       Modular.to.pushNamed("/home");
+      
     });
-    setLoading(false);
+    
   }
 }
