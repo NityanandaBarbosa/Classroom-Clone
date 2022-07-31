@@ -14,8 +14,9 @@ class SingInDataSourceMock extends Mock implements SingInDataSource {}
 void main() {
   final dataSource = SingInDataSourceMock();
   final repository = SingInRepositoryImpl(dataSource);
-  final params = SingInParams("teste@gmail.com", "Teste123");
-  final accessToken = AccessToken("asdasdsadasd", DateTime.now());
+  final params = SingInParams(email: "teste@gmail.com", password: "Teste123");
+  final accessToken =
+      AccessToken(accessToken: "asdasdsadasd", expiresAt: DateTime.now());
   test('Should return a AccessToken', () async {
     when(() => dataSource.userSingIn(params))
         .thenAnswer((_) async => accessToken);

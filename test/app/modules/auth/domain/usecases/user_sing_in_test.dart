@@ -11,9 +11,10 @@ class SingInRepositoryMock extends Mock implements SingInRepository {}
 
 void main() {
   final repository = SingInRepositoryMock();
-  final params = SingInParams("teste@gmail.com", "Teste123");
+  final params = SingInParams(email: "teste@gmail.com", password: "Teste123");
   test('Should return a AccessToken', () async {
-    final accessToken = AccessToken("asdasdsadasd", DateTime.now());
+    final accessToken =
+        AccessToken(accessToken: "asdasdsadasd", expiresAt: DateTime.now());
     when(() => repository.userSingIn(params))
         .thenAnswer((_) async => Right(accessToken));
     final usecase = UserSingIn(repository);
@@ -31,7 +32,6 @@ void main() {
   });
 
   test('Should return a InvalidCredentials', () async {
-    final params = SingInParams("teste@gmail.com", "Teste123");
     const exception = InvalidCredentials("Error");
     when(() => repository.userSingIn(params))
         .thenAnswer((_) async => const Left(exception));
