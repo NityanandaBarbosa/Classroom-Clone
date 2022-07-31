@@ -1,6 +1,6 @@
 import 'package:ifroom/app/core/utils/dio_client.dart';
 import 'package:ifroom/app/modules/auth/domain/entities/sing_up_user.dart';
-import 'package:ifroom/app/modules/auth/infra/adapters/adapters.dart';
+import 'package:ifroom/app/modules/auth/infra/adapters/sing_up_adapters.dart';
 import 'package:ifroom/app/modules/auth/infra/datasources/sing_up_datasource.dart';
 import 'package:ifroom/app/modules/auth/infra/errors/sing_up_infra_errors.dart';
 
