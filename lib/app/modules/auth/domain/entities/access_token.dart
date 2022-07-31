@@ -2,5 +2,5 @@ class AccessToken {
   final String accessToken;
   final DateTime expiresAt;
 
-  AccessToken(this.accessToken, this.expiresAt);
+  AccessToken({required this.accessToken, required this.expiresAt});
 }
