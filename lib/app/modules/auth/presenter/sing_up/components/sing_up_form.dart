@@ -9,39 +9,38 @@ class SingUpForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
-      alignment: Alignment.center,
+      alignment: Alignment.bottomCenter,
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.9,
-        height: MediaQuery.of(context).size.height * 0.5,
+        height: MediaQuery.of(context).size.height * 0.4,
         child: Card( 
-          elevation: 5,
-          color: Colors.white.withOpacity(0.9),
+          elevation: 10,
+          color: Colors.white.withOpacity(0.95),
+          shadowColor: Colors.grey,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8.0))),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   CustomTextField(
-                      hintText: "Your E-mail",
-                      labelText: "E-mail",
+                      text: "E-mail",
                       textController: store.emailController,
                       isPassword: false),
                   CustomTextField(
-                      hintText: "Your password",
-                      labelText: "Password",
+                      text: "Password",
                       textController: store.passwordController,
                       isPassword: true),
                   CustomTextField(
-                      hintText: "Your full name",
-                      labelText: "Full name",
+                      text: "Full name",
                       textController: store.nameController,
                       isPassword: false),
                   TextButton(
                     onPressed: () async => await store.userSingUp(), 
                     child: const Text(
-                      "Submit", 
+                      "Register", 
                       style: TextStyle(fontSize: 20),
                       ))
                 ],

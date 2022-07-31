@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:ifroom/app/core/styles/components_styles.dart';
 
 class CustomTextField extends StatelessWidget {
-  final String hintText;
-  final String labelText;
+  final String text;
   final bool isPassword;
   final TextEditingController textController;
   final bool isPasswordHide;
 
   const CustomTextField({
     Key? key,
-    required this.hintText,
-    required this.labelText,
+    required this.text,
     required this.isPassword,
     required this.textController,
     this.isPasswordHide = false,
@@ -31,8 +29,8 @@ class CustomTextField extends StatelessWidget {
               controller: textController,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
-                hintText: hintText,
-                labelText: labelText,
+                hintText: text,
+                labelText: text,
                 labelStyle: ComponentsStyles.regurlar13Black,
                 border: ComponentsStyles.inputBorderBlack54,
                 suffixIcon: !isPassword

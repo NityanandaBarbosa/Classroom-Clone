@@ -8,8 +8,8 @@ import 'modules/home/home_module.dart';
 class AppModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton<Dio>((i) => Dio()),
-    Bind.lazySingleton<DioClient>((i) => DioClient(i()))
+    Bind.singleton<Dio>((i) => Dio()),
+    Bind.singleton<DioClient>((i) => DioClient(i()))
   ];
 
   @override

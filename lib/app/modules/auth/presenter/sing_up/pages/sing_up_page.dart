@@ -33,16 +33,59 @@ class _SingUpPageState extends State<SingUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Registro'),
-      ),
-      body: ScopedBuilder(
-        store: widget.store,
-        onLoading: (_) => const Center(
-          child: CircularProgressIndicator(),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topRight,
+                  colors: [Colors.yellow, Colors.green]),
+            ),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  child: Text("Register", style: TextStyle(
+                    fontSize: 60,
+                    fontStyle: FontStyle.italic, 
+                    color: Colors.lightGreen,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black87,
+                        offset: Offset(1, 3),
+                        blurRadius: 20
+                      )]
+                    )),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("Classroom", style: TextStyle(
+                      fontSize: 30,
+                      fontStyle: FontStyle.italic, 
+                      color: Colors.lightGreen,
+                      shadows: [
+                        Shadow(
+                          color: Colors.black,
+                          offset: Offset(1, 3),
+                          blurRadius: 20
+                        )]
+                      )),
+                ),
+                ScopedBuilder(
+                  store: widget.store,
+                  onLoading: (_) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  onState: ((context, state) => SingUpForm(store: widget.store)),
+                  onError: ((context, state) => SingUpForm(store: widget.store)),
+                ),
+              ],
+            ),
+          ),
         ),
-        onState: ((context, state) => SingUpForm(store: widget.store)),
-        onError: ((context, state) => SingUpForm(store: widget.store)),
       ),
     );
   }
