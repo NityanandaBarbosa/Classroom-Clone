@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:ifroom/app/modules/auth/domain/errors/sing_up_errors.dart';
-import 'package:ifroom/app/modules/auth/presenter/sing_up/components/custom_text_field.dart';
 import 'package:ifroom/app/modules/auth/presenter/sing_up/components/sing_up_form.dart';
 import 'package:ifroom/app/modules/auth/presenter/sing_up/stores/sing_up_store.dart';
 
@@ -19,14 +18,14 @@ class _SingUpPageState extends State<SingUpPage> {
     super.initState();
     widget.store.observer(
       onError: ((error) {
-      final snackBar = SnackBar(
-        content: Text(error.message),
-        backgroundColor: Colors.red,
-      );
-      if(error is !DoNothing){
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      }
-    }),
+        final snackBar = SnackBar(
+          content: Text(error.message),
+          backgroundColor: Colors.red,
+        );
+        if (error is! DoNothing) {
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
+      }),
     );
   }
 
@@ -36,11 +35,11 @@ class _SingUpPageState extends State<SingUpPage> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.bottomLeft,
-                  end: Alignment.topRight,
-                  colors: [Colors.yellow, Colors.green]),
-            ),
+          gradient: LinearGradient(
+              begin: Alignment.bottomLeft,
+              end: Alignment.topRight,
+              colors: [Colors.lightGreen, Colors.green]),
+        ),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
@@ -48,39 +47,41 @@ class _SingUpPageState extends State<SingUpPage> {
               children: [
                 const Padding(
                   padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                  child: Text("Register", style: TextStyle(
-                    fontSize: 60,
-                    fontStyle: FontStyle.italic, 
-                    color: Colors.lightGreen,
-                    shadows: [
-                      Shadow(
-                        color: Colors.black87,
-                        offset: Offset(1, 3),
-                        blurRadius: 20
-                      )]
-                    )),
+                  child: Text("Register",
+                      style: TextStyle(
+                          fontSize: 60,
+                          fontStyle: FontStyle.italic,
+                          color: Colors.lightGreen,
+                          shadows: [
+                            Shadow(
+                                color: Colors.black87,
+                                offset: Offset(1, 3),
+                                blurRadius: 20)
+                          ])),
                 ),
                 const Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text("Classroom", style: TextStyle(
-                      fontSize: 30,
-                      fontStyle: FontStyle.italic, 
-                      color: Colors.lightGreen,
-                      shadows: [
-                        Shadow(
-                          color: Colors.black,
-                          offset: Offset(1, 3),
-                          blurRadius: 20
-                        )]
-                      )),
+                  child: Text("Classroom",
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontStyle: FontStyle.italic,
+                          color: Colors.lightGreen,
+                          shadows: [
+                            Shadow(
+                                color: Colors.black,
+                                offset: Offset(1, 3),
+                                blurRadius: 20)
+                          ])),
                 ),
                 ScopedBuilder(
                   store: widget.store,
                   onLoading: (_) => const Center(
                     child: CircularProgressIndicator(),
                   ),
-                  onState: ((context, state) => SingUpForm(store: widget.store)),
-                  onError: ((context, state) => SingUpForm(store: widget.store)),
+                  onState: ((context, state) =>
+                      SingUpForm(store: widget.store)),
+                  onError: ((context, state) =>
+                      SingUpForm(store: widget.store)),
                 ),
               ],
             ),
