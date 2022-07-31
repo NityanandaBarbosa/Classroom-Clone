@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:ifroom/app/modules/auth/domain/errors/sing_up_errors.dart';
-import 'package:ifroom/app/modules/auth/presenter/sing_up/components/sing_up_form.dart';
-import 'package:ifroom/app/modules/auth/presenter/sing_up/stores/sing_up_store.dart';
+import 'package:ifroom/app/modules/auth/presenter/components/sing_up_form.dart';
+import 'package:ifroom/app/modules/auth/presenter/stores/sing_up_store.dart';
 
 class SingUpPage extends StatefulWidget {
   final SingUpStore store;
@@ -38,7 +38,7 @@ class _SingUpPageState extends State<SingUpPage> {
           gradient: LinearGradient(
               begin: Alignment.bottomLeft,
               end: Alignment.topRight,
-              colors: [Colors.lightGreen, Colors.green]),
+              colors: [Colors.yellow, Colors.green]),
         ),
         child: Center(
           child: SingleChildScrollView(

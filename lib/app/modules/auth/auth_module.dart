@@ -4,12 +4,10 @@ import 'package:ifroom/app/modules/auth/domain/usecases/user_sing_up.dart.dart';
 import 'package:ifroom/app/modules/auth/external/datasources/api_sing_up_datasource.dart';
 import 'package:ifroom/app/modules/auth/infra/datasources/sing_up_datasource.dart';
 import 'package:ifroom/app/modules/auth/infra/repositories/sing_up_repository_impl.dart';
-import 'package:ifroom/app/modules/auth/presenter/sing_up/pages/sing_up_page.dart';
-import 'package:ifroom/app/modules/auth/presenter/sing_up/stores/sing_up_store.dart';
+import 'package:ifroom/app/modules/auth/presenter/pages/sing_up_page.dart';
+import 'package:ifroom/app/modules/auth/presenter/stores/sing_up_store.dart';
 
-import '../home/home_module.dart';
-
-class AuthModule extends Module{
+class AuthModule extends Module {
   @override
   final List<Bind> binds = [
     //datasource
@@ -24,6 +22,7 @@ class AuthModule extends Module{
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/', child: (_, args) =>  SingUpPage(store: Modular.get<SingUpStore>())),
+    ChildRoute('/',
+        child: (_, args) => SingUpPage(store: Modular.get<SingUpStore>())),
   ];
 }
