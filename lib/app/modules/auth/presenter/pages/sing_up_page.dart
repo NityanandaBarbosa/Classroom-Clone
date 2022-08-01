@@ -13,6 +13,10 @@ class SingUpPage extends StatefulWidget {
 }
 
 class _SingUpPageState extends State<SingUpPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -25,6 +29,13 @@ class _SingUpPageState extends State<SingUpPage> {
         if (error is! DoNothing) {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
+      }),
+      onState: ((_) {
+        const snackBar = SnackBar(
+          content: Text("Success, redirecting to Login!"),
+          backgroundColor: Colors.green,
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }),
     );
   }
@@ -78,10 +89,18 @@ class _SingUpPageState extends State<SingUpPage> {
                   onLoading: (_) => const Center(
                     child: CircularProgressIndicator(),
                   ),
-                  onState: ((context, state) =>
-                      SingUpForm(store: widget.store)),
-                  onError: ((context, state) =>
-                      SingUpForm(store: widget.store)),
+                  onState: ((context, state) => SingUpForm(
+                        store: widget.store,
+                        emailController: emailController,
+                        passwordController: passwordController,
+                        nameController: nameController,
+                      )),
+                  onError: ((context, state) => SingUpForm(
+                        store: widget.store,
+                        emailController: emailController,
+                        passwordController: passwordController,
+                        nameController: nameController,
+                      )),
                 ),
               ],
             ),

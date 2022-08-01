@@ -5,7 +5,16 @@ import 'package:ifroom/app/modules/auth/presenter/stores/sing_up_store.dart';
 
 class SingUpForm extends StatelessWidget {
   final SingUpStore store;
-  const SingUpForm({Key? key, required this.store}) : super(key: key);
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+  final TextEditingController nameController;
+  const SingUpForm(
+      {Key? key,
+      required this.store,
+      required this.emailController,
+      required this.passwordController,
+      required this.nameController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +37,15 @@ class SingUpForm extends StatelessWidget {
                 children: [
                   CustomTextField(
                       text: "E-mail",
-                      textController: store.emailController,
+                      textController: emailController,
                       isPassword: false),
                   CustomTextField(
                       text: "Password",
-                      textController: store.passwordController,
+                      textController: passwordController,
                       isPassword: true),
                   CustomTextField(
                       text: "Full name",
-                      textController: store.nameController,
+                      textController: nameController,
                       isPassword: false),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -48,7 +57,10 @@ class SingUpForm extends StatelessWidget {
                     ],
                   ),
                   TextButton(
-                      onPressed: () async => await store.userSingUp(),
+                      onPressed: () async => await store.userSingUp(
+                          emailController.text,
+                          passwordController.text,
+                          nameController.text),
                       child: const Text(
                         "Register",
                         style: TextStyle(fontSize: 20),
