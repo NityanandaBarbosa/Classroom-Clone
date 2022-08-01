@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 
-import 'home_store.dart';
+import '../stores/home_store.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
   final HomeStore store;
   const HomePage({
     Key? key,
-    this.title = "Home",
+    this.title = "IFCE Classroom",
     required this.store,
   }) : super(key: key);
 
@@ -21,7 +21,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Counter'),
+        centerTitle: false,
+        title:
+            Text(widget.title, style: const TextStyle(color: Colors.black87)),
+        leading: const IconButton(icon: Icon(Icons.menu), onPressed: null),
+        backgroundColor: Colors.white70,
       ),
       body: ScopedBuilder<HomeStore, Exception, int>(
         store: widget.store,
