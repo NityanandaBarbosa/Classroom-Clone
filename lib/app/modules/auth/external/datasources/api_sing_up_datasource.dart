@@ -11,7 +11,7 @@ class ApiSingUpDatasource implements SingUpDataSource {
   @override
   Future<SingedUser> userSingUp(SingUpParams params) async {
     final data = SingUpParamsAdpter.toMap(params);
-    final response = await dio.post(router: "/auth/sing-up", data: data);
+    final response = await dio.post(route: "/auth/sing-up", data: data);
     if (response.statusCode == 201) {
       return SingedUserAdapter.fromMap(response.data);
     } else {

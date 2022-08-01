@@ -13,7 +13,7 @@ class ApiSingInDatasource implements SingInDataSource {
   @override
   Future<AccessToken> userSingIn(SingInParams params) async {
     final data = SingInParamsAdpters.toMap(params);
-    final response = await dio.post(router: '/login', data: data);
+    final response = await dio.post(route: '/login', data: data);
     if (response.statusCode == 200) {
       return AccessTokenAdapter.fromMap(response.data);
     }
