@@ -17,7 +17,7 @@ void main() {
         AccessToken(accessToken: "asdasdsadasd", expiresAt: DateTime.now());
     when(() => repository.userSingIn(params))
         .thenAnswer((_) async => Right(accessToken));
-    final usecase = UserSingIn(repository);
+    final usecase = UserSingInImpl(repository);
     final result = await usecase(params);
     expect(result.fold(id, id), isA<AccessToken>());
   });
@@ -26,7 +26,7 @@ void main() {
     const exception = SingInException("Error");
     when(() => repository.userSingIn(params))
         .thenAnswer((_) async => const Left(exception));
-    final usecase = UserSingIn(repository);
+    final usecase = UserSingInImpl(repository);
     final result = await usecase(params);
     expect(result.fold(id, id), isA<SingInException>());
   });
@@ -35,7 +35,7 @@ void main() {
     const exception = InvalidCredentials("Error");
     when(() => repository.userSingIn(params))
         .thenAnswer((_) async => const Left(exception));
-    final usecase = UserSingIn(repository);
+    final usecase = UserSingInImpl(repository);
     final result = await usecase(params);
     expect(result.fold(id, id), isA<InvalidCredentials>());
   });

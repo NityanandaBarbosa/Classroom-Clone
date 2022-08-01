@@ -8,7 +8,10 @@ import 'modules/home/home_module.dart';
 class AppModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.singleton<Dio>((i) => Dio()),
+    Bind.singleton<Dio>((i) => Dio(BaseOptions(
+          connectTimeout: 15000,
+          receiveTimeout: 15000,
+        ))),
     Bind.singleton<DioClient>((i) => DioClient(i()))
   ];
 
@@ -17,5 +20,4 @@ class AppModule extends Module {
     ModuleRoute(Modular.initialRoute, module: AuthModule()),
     ModuleRoute("/home", module: HomeModule())
   ];
-
 }
