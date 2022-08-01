@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ifroom/app/modules/auth/presenter/components/custom_text_field.dart';
 import 'package:ifroom/app/modules/auth/presenter/stores/sing_up_store.dart';
 
@@ -37,6 +38,15 @@ class SingUpForm extends StatelessWidget {
                       text: "Full name",
                       textController: store.nameController,
                       isPassword: false),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("Already have an account?"),
+                      TextButton(
+                          onPressed: () => Modular.to.pushReplacementNamed("/"),
+                          child: const Text("Sing In"))
+                    ],
+                  ),
                   TextButton(
                       onPressed: () async => await store.userSingUp(),
                       child: const Text(
