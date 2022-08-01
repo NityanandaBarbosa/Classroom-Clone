@@ -12,7 +12,7 @@ void main() {
   final repository = ClassRepositoryMock();
   final usecase = GetClassesImpl(repository);
   test('Should return a List of one Class', () async {
-    final list = <Class>[Class(name: "teste", creator: "teste")];
+    final list = <Class>[Class(id: 1, name: "teste", creator: "teste")];
     when(() => repository.getClasses()).thenAnswer((_) async => Right(list));
     final result = await usecase();
     expect(result.fold(id, id), isA<List<Class>>());
