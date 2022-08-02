@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:ifroom/app/core/constants/app_consts.dart';
 
@@ -15,13 +17,27 @@ class DioClient implements HttpClient {
   @override
   Future<Response> post(
       {required String route, Map<String, dynamic> data = const {}}) async {
-    final response = await dio.post(AppConsts.apiUrl + route, data: data);
-    return response;
+    try {
+      final response = await dio.post(AppConsts.apiUrl + route, data: data);
+      return response;
+    } on DioError catch (e) {
+      if (e.response?.statusCode == 403) {
+        Modular.to.popUntil(ModalRoute.withName('/'));
+      }
+      rethrow;
+    }
   }
 
   @override
   Future<Response> get({required String route}) async {
-    final response = await dio.get(AppConsts.apiUrl + route);
-    return response;
+    try {
+      final response = await dio.get(AppConsts.apiUrl + route);
+      return response;
+    } on DioError catch (e) {
+      if (e.response?.statusCode == 403) {
+        Modular.to.popUntil(ModalRoute.withName('/'));
+      }
+      rethrow;
+    }
   }
 }
