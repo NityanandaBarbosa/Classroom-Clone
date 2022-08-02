@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:ifroom/app/modules/home/domain/entities/class.dart';
+import 'package:ifroom/app/modules/home/presenter/components/list_classes.dart';
 
 import '../stores/home_store.dart';
 
@@ -26,28 +27,31 @@ class _HomePageState extends State<HomePage> {
         title:
             Text(widget.title, style: const TextStyle(color: Colors.black87)),
         leading: const IconButton(icon: Icon(Icons.menu), onPressed: null),
-        backgroundColor: Colors.white70,
+        backgroundColor: Colors.white,
       ),
-      body: ScopedBuilder<HomeStore, Exception, List<Class>>(
+      body: ScopedBuilder(
         store: widget.store,
-        onState: (_, counter) {
-          return Padding(
-            padding: const EdgeInsets.all(10),
-            child: Text('$counter'),
-          );
+        onState: (_, List<Class> state) {
+          return ListClasses(list: state);
         },
-        onError: (context, error) => const Center(
-          child: Text(
+        onError: (context, error) {
+          print(error.runtimeType);
+          return const Center(
+              child: Text(
             'Too many clicks',
             style: TextStyle(color: Colors.red),
-          ),
-        ),
+          ));
+        },
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
         onPressed: () {
           widget.store.apiGetClasses();
         },
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.add,
+          color: Color.fromARGB(255, 5, 101, 180),
+        ),
       ),
     );
   }

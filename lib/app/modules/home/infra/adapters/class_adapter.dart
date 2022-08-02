@@ -4,8 +4,8 @@ class ClassAdapter {
   static Class fromMap(Map<String, dynamic> map) {
     return Class(
       id: map["id"],
-      name: map["name"],
-      creator: map["ownerName"],
+      name: map["name"] ?? "",
+      creator: map["ownerName"] ?? "",
     );
   }
 }

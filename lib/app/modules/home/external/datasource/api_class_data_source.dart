@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:dartz/dartz_unsafe.dart';
 import 'package:ifroom/app/core/utils/dio_client.dart';
 import 'package:ifroom/app/modules/home/domain/entities/class.dart';
 import 'package:ifroom/app/modules/home/infra/adapters/class_adapter.dart';
@@ -10,7 +13,7 @@ class ApiClassDataSource implements ClassDataSource {
   ApiClassDataSource(this.dio);
   @override
   Future<List<Class>> getClasses() async {
-    final response = await dio.post(route: '/discipline');
+    final response = await dio.get(route: '/discipline');
     if (response.statusCode == 200) {
       final list = response.data as List;
       return list.map((e) => ClassAdapter.fromMap(e)).toList();
