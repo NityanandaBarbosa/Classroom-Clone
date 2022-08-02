@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:ifroom/app/modules/home/domain/entities/class.dart';
 
 import '../stores/home_store.dart';
 
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage> {
         leading: const IconButton(icon: Icon(Icons.menu), onPressed: null),
         backgroundColor: Colors.white70,
       ),
-      body: ScopedBuilder<HomeStore, Exception, int>(
+      body: ScopedBuilder<HomeStore, Exception, List<Class>>(
         store: widget.store,
         onState: (_, counter) {
           return Padding(
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          widget.store.increment();
+          widget.store.apiGetClasses();
         },
         child: const Icon(Icons.add),
       ),

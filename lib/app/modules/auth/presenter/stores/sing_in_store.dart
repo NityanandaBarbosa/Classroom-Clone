@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:ifroom/app/core/stores/auth_store.dart';
 import 'package:ifroom/app/modules/auth/domain/entities/access_token.dart';
 import 'package:ifroom/app/modules/auth/domain/entities/sing_in_user.dart';
 import 'package:ifroom/app/modules/auth/domain/errors/sing_in_errors.dart';
@@ -7,7 +8,8 @@ import 'package:ifroom/app/modules/auth/domain/usecases/user_sing_in.dart';
 
 class SingInStore extends NotifierStore<SingInException, AccessToken> {
   final UserSingIn usecase;
-  SingInStore(this.usecase)
+  final AuthStore authStore;
+  SingInStore(this.usecase, this.authStore)
       : super(AccessToken(
           accessToken: "",
           expiresAt: DateTime.now(),
@@ -25,6 +27,7 @@ class SingInStore extends NotifierStore<SingInException, AccessToken> {
       setError(DoNothing("Nothing"));
     }, (r) {
       update(r);
+      authStore.update(r);
       Modular.to.pushNamed("/home/");
     });
     setLoading(false);

@@ -28,7 +28,7 @@ class AuthModule extends Module {
     Bind.factory<UserSingIn>(((i) => UserSingInImpl(i()))),
     //store
     Bind.factory<SingUpStore>((i) => SingUpStore(i())),
-    Bind.factory<SingInStore>((i) => SingInStore(i()))
+    Bind.factory<SingInStore>((i) => SingInStore(i(), i()))
   ];
 
   @override
