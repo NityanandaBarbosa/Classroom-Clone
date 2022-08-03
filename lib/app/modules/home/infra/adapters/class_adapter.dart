@@ -6,6 +6,7 @@ class ClassAdapter {
       id: map["id"],
       name: map["name"] ?? "",
       creator: map["ownerName"] ?? "",
+      section: map["section"] ?? "",
     );
   }
 }

@@ -13,7 +13,9 @@ void main() {
   final datasource = ClassDataSourceMock();
   final repository = ClassRepositoryImpl(datasource);
   test('Should return a List of one Class', () async {
-    final list = <Class>[Class(id: 1, name: "teste", creator: "teste")];
+    final list = <Class>[
+      Class(id: 1, name: "teste", creator: "teste", section: "teste")
+    ];
     when(() => datasource.getClasses()).thenAnswer((invocation) async => list);
     final response = await repository.getClasses();
     expect(response.fold(id, id), isA<List<Class>>());

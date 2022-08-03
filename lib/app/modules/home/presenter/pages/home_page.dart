@@ -10,7 +10,7 @@ class HomePage extends StatefulWidget {
   final HomeStore store;
   const HomePage({
     Key? key,
-    this.title = "IFCE Classroom",
+    this.title = "IFCE Sala de Aula",
     required this.store,
   }) : super(key: key);
 
@@ -31,6 +31,11 @@ class _HomePageState extends State<HomePage> {
       ),
       body: ScopedBuilder(
         store: widget.store,
+        onLoading: (context) => const Center(
+          child: CircularProgressIndicator(
+            color: Colors.blue,
+          ),
+        ),
         onState: (_, List<Class> state) {
           return ListClasses(list: state);
         },

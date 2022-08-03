@@ -25,11 +25,14 @@ class ClassCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(item.name,
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white.withOpacity(0.9))),
+                      Flexible(
+                        child: Text(item.name,
+                            style: TextStyle(
+                                overflow: TextOverflow.ellipsis,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white.withOpacity(0.9))),
+                      ),
                       InkWell(
                         child: Icon(
                           Icons.more_vert,
@@ -39,14 +42,20 @@ class ClassCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Text("Tipo de algo",
+                  Text(item.section,
                       style: TextStyle(
-                          fontSize: 14, color: Colors.white.withOpacity(0.9)))
+                          overflow: TextOverflow.ellipsis,
+                          fontSize: 14,
+                          color: Colors.white.withOpacity(0.9)))
                 ],
               ),
-              Text(item.creator,
-                  style: TextStyle(
-                      fontSize: 14, color: Colors.white.withOpacity(0.85))),
+              Flexible(
+                child: Text(item.creator,
+                    style: TextStyle(
+                        overflow: TextOverflow.ellipsis,
+                        fontSize: 14,
+                        color: Colors.white.withOpacity(0.85))),
+              ),
             ],
           ),
         ),
