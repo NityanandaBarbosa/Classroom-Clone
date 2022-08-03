@@ -20,6 +20,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    widget.store.apiGetClasses();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -51,7 +57,31 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
         onPressed: () {
-          widget.store.apiGetClasses();
+          showModalBottomSheet(
+              context: context,
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12.0))),
+              builder: (context) => SizedBox(
+                    height: 150,
+                    child: Column(
+                      children: [
+                        ListTile(
+                          onTap: () => print("cria turma"),
+                          title: const Text(
+                            "Criar turma",
+                            style: TextStyle(fontSize: 15),
+                          ),
+                        ),
+                        ListTile(
+                          onTap: () => print("Entrar na turma"),
+                          title: const Text(
+                            "Participar da turma",
+                            style: TextStyle(fontSize: 15),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ));
         },
         child: const Icon(
           Icons.add,
