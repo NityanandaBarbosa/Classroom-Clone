@@ -14,13 +14,13 @@ class Class {
 
 class CreateClassEntity {
   final String name;
-  final String creator;
+  final String room;
   final String section;
   final String subject;
 
   CreateClassEntity(
     this.name, [
-    this.creator = "",
+    this.room = "",
     this.section = "",
     this.subject = "",
   ]);

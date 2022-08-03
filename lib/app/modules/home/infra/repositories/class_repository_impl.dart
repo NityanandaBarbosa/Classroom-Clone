@@ -17,7 +17,22 @@ class ClassRepositoryImpl implements ClassRepository {
       return Right(response);
     } on ClassDataSourceException catch (e) {
       return Left(e);
-    } on DioError catch (e) {
+    } on DioError {
+      return Left(ClassDataSourceException());
+    } on Exception {
+      return Left(ClassDataSourceException());
+    }
+  }
+
+  @override
+  Future<Either<ClassException, Class>> createClass(
+      CreateClassEntity param) async {
+    try {
+      final response = await dataSource.createClass(param);
+      return Right(response);
+    } on ClassDataSourceException catch (e) {
+      return Left(e);
+    } on DioError {
       return Left(ClassDataSourceException());
     } on Exception {
       return Left(ClassDataSourceException());

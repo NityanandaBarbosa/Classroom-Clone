@@ -20,4 +20,14 @@ class ApiClassDataSource implements ClassDataSource {
     }
     throw ClassDataSourceException();
   }
+
+  @override
+  Future<Class> createClass(CreateClassEntity params) async {
+    final response = await dio.post(route: '/discipline');
+    if (response.statusCode == 201) {
+      final data = response.data as Map<String, dynamic>;
+      return ClassAdapter.fromMap(data);
+    }
+    throw ClassDataSourceException();
+  }
 }
