@@ -10,3 +10,7 @@ class ClassException implements Failure {
 class ClassDoNothing extends ClassException {
   ClassDoNothing(super.message);
 }
+
+class ClassEmptyName extends ClassException {
+  ClassEmptyName([super.message = "Preencha o campo nome!"]);
+}

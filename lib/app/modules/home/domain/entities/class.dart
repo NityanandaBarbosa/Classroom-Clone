@@ -11,3 +11,17 @@ class Class {
     required this.section,
   });
 }
+
+class CreateClassEntity {
+  final String name;
+  final String creator;
+  final String section;
+  final String subject;
+
+  CreateClassEntity(
+    this.name, [
+    this.creator = "",
+    this.section = "",
+    this.subject = "",
+  ]);
+}
