@@ -7,6 +7,8 @@ class ClassAdapter {
       name: map["name"] ?? "",
       creator: map["ownerName"] ?? "",
       section: map["section"] ?? "",
+      subject: map["subject"] ?? "",
+      room: map["room"] ?? "",
     );
   }
 }

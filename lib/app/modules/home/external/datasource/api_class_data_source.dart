@@ -4,6 +4,7 @@ import 'package:dartz/dartz_unsafe.dart';
 import 'package:ifroom/app/core/utils/dio_client.dart';
 import 'package:ifroom/app/modules/home/domain/entities/class.dart';
 import 'package:ifroom/app/modules/home/infra/adapters/class_adapter.dart';
+import 'package:ifroom/app/modules/home/infra/adapters/create_class_adpater.dart';
 import 'package:ifroom/app/modules/home/infra/datasources/class_data_source.dart';
 import 'package:ifroom/app/modules/home/infra/errors/class_data_source_errors.dart';
 
@@ -23,7 +24,8 @@ class ApiClassDataSource implements ClassDataSource {
 
   @override
   Future<Class> createClass(CreateClassEntity params) async {
-    final response = await dio.post(route: '/discipline');
+    final data = CreateClassAdpater.toMap(params);
+    final response = await dio.post(route: '/discipline', data: data);
     if (response.statusCode == 201) {
       final data = response.data as Map<String, dynamic>;
       return ClassAdapter.fromMap(data);

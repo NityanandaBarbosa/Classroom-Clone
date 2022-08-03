@@ -7,15 +7,15 @@ import 'package:ifroom/app/modules/home/infra/errors/class_data_source_errors.da
 import 'package:ifroom/app/modules/home/infra/repositories/class_repository_impl.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../mocks/class_mocks.dart';
+
 class ClassDataSourceMock extends Mock implements ClassDataSource {}
 
 void main() {
   final datasource = ClassDataSourceMock();
   final repository = ClassRepositoryImpl(datasource);
   test('Should return a List of one Class', () async {
-    final list = <Class>[
-      Class(id: 1, name: "teste", creator: "teste", section: "teste")
-    ];
+    final list = <Class>[ClassMocks.oneClass];
     when(() => datasource.getClasses()).thenAnswer((invocation) async => list);
     final response = await repository.getClasses();
     expect(response.fold(id, id), isA<List<Class>>());

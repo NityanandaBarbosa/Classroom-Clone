@@ -5,6 +5,11 @@ import 'package:mocktail/mocktail.dart';
 class ClassRepositoryMock extends Mock implements ClassRepository {}
 
 class ClassMocks {
-  static final oneClass =
-      Class(id: 1, name: "teste", creator: "teste", section: "teste");
+  static final oneClass = Class(
+      id: 1,
+      name: "teste",
+      creator: "teste",
+      section: "teste",
+      subject: "",
+      room: "");
 }

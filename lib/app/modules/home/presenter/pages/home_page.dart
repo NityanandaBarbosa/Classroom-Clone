@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:ifroom/app/modules/home/domain/entities/class.dart';
 import 'package:ifroom/app/modules/home/presenter/components/list_classes.dart';
@@ -66,7 +67,8 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       children: [
                         ListTile(
-                          onTap: () => print("cria turma"),
+                          onTap: () =>
+                              Modular.to.pushReplacementNamed('/home/class'),
                           title: const Text(
                             "Criar turma",
                             style: TextStyle(fontSize: 15),
