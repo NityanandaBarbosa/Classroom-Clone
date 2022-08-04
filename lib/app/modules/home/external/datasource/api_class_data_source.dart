@@ -32,4 +32,14 @@ class ApiClassDataSource implements ClassDataSource {
     }
     throw ClassDataSourceException();
   }
+
+  @override
+  Future<Class> joinClass(String code) async {
+    final response = await dio.post(route: '/discipline/$code');
+    if (response.statusCode == 200) {
+      final data = response.data as Map<String, dynamic>;
+      return ClassAdapter.fromMap(data);
+    }
+    throw ClassDataSourceException();
+  }
 }

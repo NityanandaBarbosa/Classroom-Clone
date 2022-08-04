@@ -5,7 +5,7 @@ import 'package:ifroom/app/modules/home/domain/usecases/get_classes.dart';
 import 'package:ifroom/app/modules/home/external/datasource/api_class_data_source.dart';
 import 'package:ifroom/app/modules/home/infra/datasources/class_data_source.dart';
 import 'package:ifroom/app/modules/home/infra/repositories/class_repository_impl.dart';
-import 'package:ifroom/app/modules/home/presenter/pages/create_edit_class.dart';
+import 'package:ifroom/app/modules/home/presenter/pages/create_class_form.dart';
 import 'package:ifroom/app/modules/home/presenter/stores/create_class_store.dart';
 import 'presenter/stores/home_store.dart';
 

@@ -38,4 +38,18 @@ class ClassRepositoryImpl implements ClassRepository {
       return Left(ClassDataSourceException());
     }
   }
+
+  @override
+  Future<Either<ClassException, Class>> joinClass(String code) async {
+    try {
+      final response = await dataSource.joinClass(code);
+      return Right(response);
+    } on ClassDataSourceException catch (e) {
+      return Left(e);
+    } on DioError {
+      return Left(CreateClassDataSourceException());
+    } on Exception {
+      return Left(ClassDataSourceException());
+    }
+  }
 }
