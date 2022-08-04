@@ -53,7 +53,10 @@ class SingUpForm extends StatelessWidget {
                       const Text("Already have an account?"),
                       TextButton(
                           onPressed: () => Modular.to.pushReplacementNamed("/"),
-                          child: const Text("Sing In"))
+                          child: const Text(
+                            "Sing In",
+                            style: TextStyle(color: Colors.green),
+                          ))
                     ],
                   ),
                   TextButton(
@@ -63,7 +66,7 @@ class SingUpForm extends StatelessWidget {
                           nameController.text),
                       child: const Text(
                         "Register",
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: 20, color: Colors.green),
                       ))
                 ],
               ),

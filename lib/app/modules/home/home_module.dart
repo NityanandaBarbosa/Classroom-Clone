@@ -23,7 +23,7 @@ class HomeModule extends Module {
     Bind.factory<CreateClass>(((i) => CreateClassImpl(i()))),
     //store
     Bind.lazySingleton((i) => HomeStore(i())),
-    Bind.lazySingleton((i) => CreateClassStore(i())),
+    Bind.factory((i) => CreateClassStore(i(), i())),
   ];
 
   @override
@@ -31,7 +31,7 @@ class HomeModule extends Module {
     ChildRoute(Modular.initialRoute,
         child: (_, args) => HomePage(store: Modular.get<HomeStore>())),
     ChildRoute('/class',
-        child: (_, args) => CreateEditClass(
+        child: (_, args) => CreateClassForm(
               store: Modular.get<CreateClassStore>(),
             )),
   ];

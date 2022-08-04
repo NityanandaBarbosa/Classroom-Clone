@@ -1,25 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import 'package:ifroom/app/modules/home/domain/entities/class.dart';
+import 'package:ifroom/app/modules/home/domain/errors/class_errors.dart';
 import 'package:ifroom/app/modules/home/presenter/pages/components/class_custom_text_field.dart';
+import 'package:ifroom/app/modules/home/presenter/pages/components/create_button.dart';
 import 'package:ifroom/app/modules/home/presenter/stores/create_class_store.dart';
 
-import '../../domain/usecases/create_class.dart';
-
-class CreateEditClass extends StatefulWidget {
+class CreateClassForm extends StatefulWidget {
   final CreateClassStore store;
-  const CreateEditClass({Key? key, required this.store});
+  const CreateClassForm({Key? key, required this.store});
 
   @override
-  _CreateEditClassState createState() => _CreateEditClassState();
+  _CreateClassFormState createState() => _CreateClassFormState();
 }
 
-class _CreateEditClassState extends State<CreateEditClass> {
+class _CreateClassFormState extends State<CreateClassForm> {
   final name = TextEditingController();
   final section = TextEditingController();
   final room = TextEditingController();
   final subject = TextEditingController();
+
+  @override
+  void dispose() {
+    widget.store.fieldIsEmptyStore.destroy();
+    widget.store.destroy();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    widget.store.observer(
+      onError: ((error) {
+        final snackBar = SnackBar(
+          content: Text(error.message),
+          backgroundColor: Colors.red,
+        );
+
+        if (error is! ClassDoNothing) {
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
+      }),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,56 +61,54 @@ class _CreateEditClassState extends State<CreateEditClass> {
           actions: [
             Row(
               children: [
-                ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                          const Color.fromARGB(255, 33, 119, 211)),
-                    ),
-                    onPressed: () async => await widget.store.createClass(
-                        CreateClassEntity(
-                            name.text, room.text, section.text, subject.text)),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8),
-                      child: Text("Criar",
-                          style: TextStyle(
-                            fontSize: 16,
-                          )),
-                    )),
+                ScopedBuilder(
+                  store: widget.store.fieldIsEmptyStore,
+                  onState: (context, state) => ResponsiveCreateButton(
+                      store: widget.store,
+                      name: name,
+                      section: section,
+                      subject: subject,
+                      room: room,
+                      fieldIsEmptyStore: widget.store.fieldIsEmptyStore),
+                ),
                 const IconButton(onPressed: null, icon: Icon(Icons.more_vert))
               ],
             ),
           ],
         ),
-        body: ScopedBuilder(
-          store: widget.store,
-          onError: (context, error) => const Center(
-            child: Text("ERROR"),
-          ),
-          onLoading: ((context) =>
-              const Center(child: CircularProgressIndicator())),
-          onState: ((context, state) => Padding(
-                padding: const EdgeInsets.fromLTRB(8, 14, 8, 0),
-                child: Column(
-                  children: [
-                    ClassCustomTextField(
-                      text: "Nome da turma (obrigatório)",
-                      textController: name,
-                    ),
-                    ClassCustomTextField(
-                      text: "Seção",
-                      textController: section,
-                    ),
-                    ClassCustomTextField(
-                      text: "Sala",
-                      textController: room,
-                    ),
-                    ClassCustomTextField(
-                      text: "Matéria",
-                      textController: subject,
-                    ),
-                  ],
-                ),
-              )),
+        body: Column(
+          children: [
+            ScopedBuilder(
+              store: widget.store,
+              onLoading: (context) => const LinearProgressIndicator(),
+              onError: (context, error) => Container(),
+              onState: (context, state) => Container(),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 14, 8, 0),
+              child: Column(
+                children: [
+                  ClassCustomTextField(
+                    text: "Nome da turma (obrigatório)",
+                    textController: name,
+                    store: widget.store.fieldIsEmptyStore,
+                  ),
+                  ClassCustomTextField(
+                    text: "Seção",
+                    textController: section,
+                  ),
+                  ClassCustomTextField(
+                    text: "Sala",
+                    textController: room,
+                  ),
+                  ClassCustomTextField(
+                    text: "Matéria",
+                    textController: subject,
+                  ),
+                ],
+              ),
+            ),
+          ],
         ));
   }
 }

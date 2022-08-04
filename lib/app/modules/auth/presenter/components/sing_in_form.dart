@@ -50,7 +50,8 @@ class SingInForm extends StatelessWidget {
                       TextButton(
                           onPressed: () =>
                               Modular.to.pushReplacementNamed("/sing-up"),
-                          child: const Text("Sing Up"))
+                          child: const Text("Sing Up",
+                              style: TextStyle(color: Colors.green)))
                     ],
                   ),
                   TextButton(
@@ -58,7 +59,7 @@ class SingInForm extends StatelessWidget {
                           emailController.text, passwordController.text),
                       child: const Text(
                         "Login",
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: 20, color: Colors.green),
                       ))
                 ],
               ),

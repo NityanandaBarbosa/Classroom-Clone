@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ifroom/app/core/stores/auth_store.dart';
 import 'package:ifroom/app/core/utils/dio_client.dart';
 import 'package:ifroom/app/modules/auth/auth_module.dart';
+import 'package:ifroom/app/core/stores/field_is_empty_store.dart';
 import 'core/constants/app_consts.dart';
 import 'modules/home/home_module.dart';
 
@@ -15,6 +16,7 @@ class AppModule extends Module {
         baseUrl: AppConsts.apiUrl))),
     Bind.singleton<HttpClient>((i) => DioClient(i(), i())),
     Bind.singleton<AuthStore>((i) => AuthStore()),
+    Bind.factory((i) => FieldIsEmptyStore()),
   ];
 
   @override

@@ -33,7 +33,7 @@ class ClassRepositoryImpl implements ClassRepository {
     } on ClassDataSourceException catch (e) {
       return Left(e);
     } on DioError {
-      return Left(ClassDataSourceException());
+      return Left(CreateClassDataSourceException());
     } on Exception {
       return Left(ClassDataSourceException());
     }
