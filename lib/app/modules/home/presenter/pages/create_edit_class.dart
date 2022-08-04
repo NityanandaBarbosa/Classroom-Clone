@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:ifroom/app/modules/home/domain/errors/class_errors.dart';
-import 'package:ifroom/app/modules/home/presenter/pages/components/class_custom_text_field.dart';
-import 'package:ifroom/app/modules/home/presenter/pages/components/create_button.dart';
+import 'package:ifroom/app/modules/home/presenter/components/class_custom_text_field.dart';
+import 'package:ifroom/app/modules/home/presenter/components/create_button.dart';
 import 'package:ifroom/app/modules/home/presenter/stores/create_class_store.dart';
 
 class CreateClassForm extends StatefulWidget {
   final CreateClassStore store;
-  const CreateClassForm({Key? key, required this.store});
+  const CreateClassForm(Key? key, {required this.store});
 
   @override
   _CreateClassFormState createState() => _CreateClassFormState();

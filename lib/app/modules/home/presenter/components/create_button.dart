@@ -3,7 +3,7 @@ import 'package:flutter_triple/flutter_triple.dart';
 import 'package:ifroom/app/core/stores/field_is_empty_store.dart';
 import 'package:ifroom/app/modules/home/presenter/stores/create_class_store.dart';
 
-import '../../../domain/entities/class.dart';
+import '../../domain/entities/class.dart';
 
 class ResponsiveCreateButton extends StatelessWidget {
   final CreateClassStore store;
