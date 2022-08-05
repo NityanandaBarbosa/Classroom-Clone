@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'package:ifroom/app/modules/auth/presenter/components/custom_text_field.dart';
+import 'package:ifroom/app/core/components/custom_text_field.dart';
 import 'package:ifroom/app/modules/auth/presenter/stores/sing_in_store.dart';
 
 class SingInForm extends StatelessWidget {

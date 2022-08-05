@@ -75,7 +75,8 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         ListTile(
-                          onTap: () => print("Entrar na turma"),
+                          onTap: () => Modular.to
+                              .pushReplacementNamed('/home/join-class'),
                           title: const Text(
                             "Participar da turma",
                             style: TextStyle(fontSize: 15),

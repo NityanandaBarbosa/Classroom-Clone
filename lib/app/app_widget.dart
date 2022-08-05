@@ -24,6 +24,7 @@ class AppWidget extends StatelessWidget {
       title: 'Flutter Slidy',
       debugShowCheckedModeBanner: false,
       scaffoldMessengerKey: snackbarKey,
+      color: Colors.white,
       theme: ThemeData(primarySwatch: Colors.blue),
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,
