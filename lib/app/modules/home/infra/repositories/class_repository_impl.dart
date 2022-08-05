@@ -46,7 +46,16 @@ class ClassRepositoryImpl implements ClassRepository {
       return Right(response);
     } on ClassDataSourceException catch (e) {
       return Left(e);
-    } on DioError {
+    } on DioError catch (e) {
+      if (e.response?.statusCode == 400) {
+        return Left(CodeOutPattern());
+      }
+      if (e.response?.statusCode == 404) {
+        return Left(ClassNotFound());
+      }
+      if (e.response?.statusCode == 405) {
+        return Left(AlreadyInClass());
+      }
       return Left(CreateClassDataSourceException());
     } on Exception {
       return Left(ClassDataSourceException());
