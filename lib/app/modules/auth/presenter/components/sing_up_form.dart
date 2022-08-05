@@ -55,7 +55,7 @@ class SingUpForm extends StatelessWidget {
                           onPressed: () => Modular.to.pushReplacementNamed("/"),
                           child: const Text(
                             "Sing In",
-                            style: TextStyle(color: Colors.green),
+                            style: TextStyle(color: Colors.black87),
                           ))
                     ],
                   ),
@@ -66,7 +66,7 @@ class SingUpForm extends StatelessWidget {
                           nameController.text),
                       child: const Text(
                         "Register",
-                        style: TextStyle(fontSize: 20, color: Colors.green),
+                        style: TextStyle(fontSize: 20, color: Colors.black87),
                       ))
                 ],
               ),

@@ -49,7 +49,7 @@ class _SingUpPageState extends State<SingUpPage> {
           gradient: LinearGradient(
               begin: Alignment.bottomLeft,
               end: Alignment.topRight,
-              colors: [Colors.yellow, Colors.green]),
+              colors: [Colors.white30, Colors.grey]),
         ),
         child: Center(
           child: SingleChildScrollView(
@@ -62,10 +62,10 @@ class _SingUpPageState extends State<SingUpPage> {
                       style: TextStyle(
                           fontSize: 60,
                           fontStyle: FontStyle.italic,
-                          color: Colors.lightGreen,
+                          color: Colors.black87,
                           shadows: [
                             Shadow(
-                                color: Colors.black87,
+                                color: Colors.white54,
                                 offset: Offset(1, 3),
                                 blurRadius: 20)
                           ])),
@@ -76,10 +76,10 @@ class _SingUpPageState extends State<SingUpPage> {
                       style: TextStyle(
                           fontSize: 30,
                           fontStyle: FontStyle.italic,
-                          color: Colors.lightGreen,
+                          color: Colors.black87,
                           shadows: [
                             Shadow(
-                                color: Colors.black,
+                                color: Colors.white54,
                                 offset: Offset(1, 3),
                                 blurRadius: 20)
                           ])),
